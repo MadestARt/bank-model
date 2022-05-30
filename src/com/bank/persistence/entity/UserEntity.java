@@ -1,6 +1,8 @@
 package com.bank.persistence.entity;
 
 
+import java.util.List;
+
 public class UserEntity {
 
     private String fullName;

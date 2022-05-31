@@ -6,8 +6,7 @@ import java.time.LocalDate;
 public class EWallet {
 
     private String id;
-    private BigDecimal fundBalance;
-    private Currency currency;
+    private Balance fundBalance;
     private LocalDate issueDate;
     private LocalDate expiryDate;
     private PaymentSystem paymentSystem;

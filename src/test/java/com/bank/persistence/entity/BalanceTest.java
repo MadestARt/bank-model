@@ -11,24 +11,30 @@ import static org.junit.jupiter.api.Assertions.*;
 class BalanceTest {
 
     private Balance balance;
-
+    private static final BigDecimal TEST_BALANCE_AMOUNT = new BigDecimal(1000);
+    private static final Currency TEST_CURRENCY = Currency.RUB;
+    private static final String TEST_WALLET_ID = "5469-1234-5678-9876";
 
     @BeforeEach
     void initBalance() {
-        balance = new Balance(new BigDecimal(1000),Currency.RUB);
+        balance = new Balance(TEST_BALANCE_AMOUNT,TEST_CURRENCY,TEST_WALLET_ID);
     }
 
     @Test
-    void balanceIfMoneyAdded() {
+    void addMoney_shouldAddCorrect() {
         var balanceAmount = balance.getAmount().doubleValue();
         balance.addMoney(new BigDecimal(100));
-        assertEquals((balanceAmount + 100),balance.getAmount().doubleValue());
+        var expectedBalance = (balanceAmount + 100);
+        var actualValue = balance.getAmount().doubleValue();
+        assertEquals(expectedBalance,actualValue);
     }
 
     @Test
-    void balanceIfMoneySubtracted() {
+    void subtractMoney_shouldSubtractCorrect() {
         var balanceAmount = balance.getAmount().doubleValue();
         balance.subtractMoney(new BigDecimal(100));
-        assertEquals((balanceAmount - 100),balance.getAmount().doubleValue());
+        var expectedBalance = (balanceAmount - 100);
+        var actualValue = balance.getAmount().doubleValue();
+        assertEquals(expectedBalance,actualValue);
     }
 }

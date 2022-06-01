@@ -15,7 +15,7 @@ import java.util.List;
 public class Bank {
 
     private List<UserEntity> users;
-    private final UserValidator userValidator = UserValidator.getInstance();
+    private UserValidator userValidator;
 
     public void addUser(UserEntity user) {
         var validationResult = userValidator.validate(user);

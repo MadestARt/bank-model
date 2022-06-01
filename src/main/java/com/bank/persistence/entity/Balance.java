@@ -13,6 +13,7 @@ public class Balance {
 
     private BigDecimal amount;
     private Currency currency;
+    private String walletId;
 
     public void addMoney(BigDecimal moneyAmount) {
         amount = amount.add(moneyAmount);
@@ -20,7 +21,7 @@ public class Balance {
 
     public void subtractMoney(BigDecimal moneyAmount) {
         if (amount.compareTo(moneyAmount) < 0) {
-            throw new NotEnoughMoneyException();
+            throw new NotEnoughMoneyException(walletId);
         }
         amount = amount.subtract(moneyAmount);
 

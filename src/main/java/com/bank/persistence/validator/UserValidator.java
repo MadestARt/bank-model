@@ -5,10 +5,12 @@ import lombok.NoArgsConstructor;
 
 import static lombok.AccessLevel.*;
 
-@NoArgsConstructor(access = PRIVATE)
+
 public class UserValidator implements Validator<UserEntity>{
 
-    private static final UserValidator INSTANCE = new UserValidator();
+    private final String emailPattern;
+    private final String phoneNumberPattern;
+
     private static final String PHONE_NUMBER_REGEX = "^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$";
     private static final String EMAIL_REGEX = "^[A-Za-z0-9+_.-]+@(.+)$";
 
@@ -25,7 +27,13 @@ public class UserValidator implements Validator<UserEntity>{
         return validationResult;
     }
 
-    public static UserValidator getInstance() {
-        return INSTANCE;
+    public UserValidator() {
+        emailPattern = EMAIL_REGEX;
+        phoneNumberPattern = PHONE_NUMBER_REGEX;
+    }
+
+    public UserValidator(String emailRegex,String phoneNumberRegex) {
+        emailPattern = emailRegex;
+        phoneNumberPattern = phoneNumberRegex;
     }
 }

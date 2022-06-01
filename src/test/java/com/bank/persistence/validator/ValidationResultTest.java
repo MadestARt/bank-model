@@ -15,12 +15,12 @@ class ValidationResultTest {
     }
 
     @Test
-    void resultValidIfNoErrors() {
+    void isValid_shouldBeValid_whenNoErrors() {
         assertTrue(validationResult.isValid());
     }
 
     @Test
-    void resultInvalidIfSomeErrors() {
+    void isValid_shouldBeInvalid_whenSomeErrors() {
         validationResult.addError("test error");
         assertFalse(validationResult.isValid());
     }

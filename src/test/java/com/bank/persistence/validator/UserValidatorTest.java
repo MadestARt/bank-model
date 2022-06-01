@@ -2,7 +2,6 @@ package com.bank.persistence.validator;
 
 import com.bank.persistence.entity.Citizenship;
 import com.bank.persistence.entity.UserEntity;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,10 +11,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserValidatorTest {
 
-    private final UserValidator userValidator = UserValidator.getInstance();
+    private UserValidator userValidator;
+
+    @BeforeEach
+    void initUserValidator() {
+        userValidator = new UserValidator();
+    }
 
     @Test
-    void validResultIfUserValid() {
+    void validate_shouldValidateCorrect_whenUserCorrect() {
         UserEntity user = UserEntity.builder()
                 .address("Чеченская Республика, г.Грозный, ул.Гаражная д.№10")
                 .citizenship(Citizenship.RUS)
@@ -29,7 +33,7 @@ class UserValidatorTest {
     }
 
     @Test
-    void invalidResultIfUserInvalid() {
+    void validate_shouldValidateIncorrect_whenUserIncorrect() {
         UserEntity user = UserEntity.builder()
                 .address("Чеченская Республика, г.Грозный, ул.Гаражная д.№10")
                 .citizenship(Citizenship.RUS)
